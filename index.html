@@ -471,7 +471,40 @@
       box-shadow: 0 4px 18px rgba(37,99,235,0.38);
       transition: background 0.15s, transform 0.15s;
     }
-    #chat-fab:hover { background: var(--blue-dark); transform: scale(1.07); }
+    #chat-fab { background: var(--blue-dark); transform: scale(1.07); }
+
+    #chat-tooltip {
+      position: fixed;
+      bottom: 92px;
+      right: 28px;
+      background: var(--text-primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      pointer-events: none;
+      animation: tooltipBounce 2s ease-in-out infinite;
+      z-index: 997;
+    }
+    #chat-tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 18px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid var(--text-primary);
+    }
+    @keyframes tooltipBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    #chat-tooltip.hidden { display: none; }
+    @media (max-width: 420px) { #chat-tooltip { right: 12px; } }
     #chat-fab svg { width: 24px; height: 24px; }
 
     #chat-badge {
@@ -1124,6 +1157,7 @@
   <!-- ── CHATBOT ── -->
 
   <!-- FAB 버튼 -->
+  <div id="chat-tooltip">💬 궁금한 점을 물어보세요!</div>
   <button id="chat-fab" aria-label="AI 은영이에게 질문하기" onclick="toggleChat()">
     <span id="chat-badge">1</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -1308,10 +1342,12 @@ A. 단순히 교육을 운영하는 운영자를 넘어, 구성원들이 일하�
     function toggleChat() {
       const win = document.getElementById('chat-window');
       const badge = document.getElementById('chat-badge');
+      const tooltip = document.getElementById('chat-tooltip');
       opened = !opened;
       win.classList.toggle('hidden', !opened);
       if (opened) {
         badge.style.display = 'none';
+        tooltip.classList.add('hidden');
         if (messages.length === 0) addWelcome();
         document.getElementById('chat-input').focus();
       }
