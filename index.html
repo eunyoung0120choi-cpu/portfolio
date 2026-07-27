@@ -1,4 +1,4 @@
--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -34,7 +34,6 @@
       font-size: 15px;
     }
 
-    /* ── NAV ── */
     .nav {
       position: sticky;
       top: 0;
@@ -78,7 +77,6 @@
     }
     .nav-cta:hover { background: var(--blue-dark); }
 
-    /* ── LAYOUT ── */
     .container {
       max-width: 780px;
       margin: 0 auto;
@@ -87,7 +85,6 @@
     .section { padding: 5rem 0; }
     .divider { border: none; border-top: 1px solid var(--border); }
 
-    /* ── SECTION HEADER ── */
     .sec-eyebrow {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
@@ -104,7 +101,6 @@
       margin-bottom: 2.5rem;
     }
 
-    /* ── HERO ── */
     .hero {
       padding: 6rem 0 5rem;
     }
@@ -196,7 +192,6 @@
     }
     .btn-secondary:hover { border-color: var(--blue); background: var(--blue-light); color: var(--blue); }
 
-    /* ── SKILL GRID ── */
     .skill-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
@@ -227,7 +222,6 @@
     .skill-name { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 5px; }
     .skill-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
 
-    /* ── TIMELINE ── */
     .timeline { position: relative; padding-left: 1.75rem; }
     .timeline::before {
       content: '';
@@ -280,7 +274,6 @@
       content: none;
     }
 
-    /* ── PROJECT CARDS ── */
     .proj-grid { display: grid; gap: 18px; }
     .proj-card {
       background: var(--surface);
@@ -340,7 +333,6 @@
       border: 1px solid var(--border);
     }
 
-    /* ── DEMO VIDEOS ── */
     .demo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
     @media (max-width: 600px) { .demo-grid { grid-template-columns: 1fr; } }
     .demo-card {
@@ -399,7 +391,6 @@
       color: var(--blue);
     }
 
-    /* ── CONTACT ── */
     .contact-intro { font-size: 15px; color: var(--text-secondary); margin-bottom: 2rem; }
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 2.5rem; }
     .contact-item {
@@ -429,7 +420,6 @@
     .contact-label { font-size: 11px; color: var(--text-muted); margin-bottom: 2px; }
     .contact-value { font-size: 13px; font-weight: 500; color: var(--text-primary); }
 
-    /* ── FOOTER ── */
     .footer {
       text-align: center;
       padding: 2.5rem 2rem;
@@ -438,7 +428,6 @@
       border-top: 1px solid var(--border);
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .container { padding: 0 1.25rem; }
@@ -447,12 +436,10 @@
       .proj-stats { gap: 1.25rem; }
     }
 
-    /* ── PRINT ── */
     @media print {
       .nav { position: static; }
     }
 
-    /* ── CHATBOT ── */
     #chat-fab {
       position: fixed;
       bottom: 28px;
@@ -725,7 +712,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="nav">
     <span class="nav-name">최은영 · Portfolio</span>
     <ul class="nav-links">
@@ -738,7 +724,6 @@
     <a class="nav-cta" href="mailto:wldusgkdu@naver.com">연락하기</a>
   </nav>
 
-  <!-- HERO -->
   <div class="container">
     <section class="hero" id="about">
       <p class="hero-eyebrow">HRD · 교육기획 · 조직문화 담당자</p>
@@ -773,7 +758,6 @@
 
   <hr class="divider">
 
-  <!-- SKILLS -->
   <div class="container">
     <section class="section">
       <p class="sec-eyebrow">핵심 역량</p>
@@ -813,7 +797,6 @@
 
   <hr class="divider">
 
-  <!-- CAREER -->
   <div class="container">
     <section class="section" id="career">
       <p class="sec-eyebrow">경력</p>
@@ -832,6 +815,8 @@
             <li>– 전사 AI/AX 실습 교육 기획·운영 : 상반기 40~50개 차수, 교육 만족도 4점 초반 → 4점 중반으로 개선</li>
             <li>– 업무 자동화 웹앱 개발 : Claude·Google AI Studio 활용 설문 분석 자동화, 출석체크, 교육비 원장 자동화 도구 등 다수 제작</li>
             <li>– 교육 기획·강사 활동 : 신입사원 입문교육 기획 및 강사 활동, CS마인드시프트 교육 기획·운영</li>
+            <li>– 사내 소통채널 '키오스크 레터' 기획·운영 : 복도 키오스크·TV 영상 콘텐츠로 컴플라이언스 메시지 전달, 매월 순수 조회수 600명 이상 달성</li>
+            <li>– 신입사원 성장 발표 'Level Up 프로젝트' 운영 : 타임캡슐 세션 도입으로 경직된 발표 분위기를 공감의 자리로 전환</li>
             <li>– Best HRD 우수기관 인증 심사 대응 (서류 평가 대기 중)</li>
           </ul>
         </div>
@@ -858,7 +843,8 @@
           <ul class="tl-bullets">
             <li>– 법정의무교육 운영 : SK하이닉스 전사 3만 명 대상 5개 과정 이수율 100% 달성</li>
             <li>– Management College PM : SK이노베이션 고객사 커뮤니케이션, mySUNI Card/Cube 개설, 학습 이력 관리, 결과보고</li>
-            <li>– Strategic Decision Making 프로젝트 기획·운영 : 하이플렉스(HyFlex) 방식, 과반수 이상 5점 달성</li>
+            <li>– mySUNI 학습 데이터 분석 및 이벤트 기획으로 유입률·학습 시간 개선 → 고객사 추가 인력 계약 성사</li>
+            <li>– Strategic Decision Making 프로젝트 기획·운영 : 비동기식 웹사이트 직접 구축, 신임 리더 17명 중 14명 5점 만점 최상위 만족도 달성</li>
             <li>– 비동기식 웹사이트 구축 기획 참여 : 항목 구성, 웹디자인, 파일럿 운영, 매뉴얼 작성</li>
           </ul>
         </div>
@@ -869,7 +855,6 @@
 
   <hr class="divider">
 
-  <!-- PROJECTS -->
   <div class="container">
     <section class="section" id="projects">
       <p class="sec-eyebrow">프로젝트 사례</p>
@@ -1000,13 +985,132 @@
           </div>
         </div>
 
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-title">사내 소통채널 '키오스크 레터' 기획·운영</div>
+            <span class="proj-tag">조직문화·커뮤니케이션</span>
+          </div>
+          <p class="proj-desc">
+            근태 규정 준수나 컴플라이언스처럼 텍스트 공지로는 외면받기 쉬운 주제를, 복도 키오스크와 TV로 송출하는 3분 내외의 영상 콘텐츠로 기획했습니다. 점심시간 음악 플레이리스트와 함께 자연스럽게 노출시키고, 부문장 간담회나 사내 이슈 속 메시지를 영상 안에 녹여 전달했습니다. 상세 내용을 원하는 구성원을 위해 QR코드로 사내 게시판과 연결되는 채널도 함께 구축한 결과, 매월 600명 이상의 순수 조회수를 꾸준히 기록하며 인재상과 비즈니스 매너를 일상 속에 자연스럽게 정착시켰습니다.
+          </p>
+          <div class="proj-stats">
+            <div class="stat">
+              <span class="stat-num">600+</span>
+              <span class="stat-label">월평균 순수 조회수</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">3분</span>
+              <span class="stat-label">내외 콘텐츠 러닝타임</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">QR 연동</span>
+              <span class="stat-label">상세 정보 채널 구축</span>
+            </div>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-pill">사내 커뮤니케이션 기획</span>
+            <span class="stack-pill">영상 콘텐츠 제작</span>
+            <span class="stack-pill">조직문화</span>
+            <span class="stack-pill">컴플라이언스 전달</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-title">신입사원 성장 발표 'Level Up 프로젝트' 운영</div>
+            <span class="proj-tag">온보딩·신입사원</span>
+          </div>
+          <p class="proj-desc">
+            입사 1년 차 신입사원이 업무 개선 과제를 임원진 앞에서 발표하며 성장을 격려하고 소속감을 높이는 프로그램을 운영했습니다. 임원 평가 방식으로 흘러가며 분위기가 경직되는 한계가 나타나자, 입문교육 당시 작성한 편지를 발표 직전 다시 읽는 '타임캡슐 세션'을 도입해 1년 전 다짐과 현재의 성장을 마주하게 했습니다. 이름을 새긴 커스텀 컵케이크를 함께 전달하자 발표 현장은 동기 간 격려와 공감의 자리로 바뀌었고, 신입사원들이 이를 개인 SNS에 자발적으로 공유하며 채용 브랜딩 효과로도 이어졌습니다.
+          </p>
+          <div class="proj-stats">
+            <div class="stat">
+              <span class="stat-num">타임캡슐</span>
+              <span class="stat-label">입문교육 편지 재확인 세션 도입</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">경직→공감</span>
+              <span class="stat-label">발표 분위기 전환</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">채용 브랜딩</span>
+              <span class="stat-label">SNS 자발적 확산 효과</span>
+            </div>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-pill">온보딩 설계</span>
+            <span class="stack-pill">신입사원 프로그램</span>
+            <span class="stack-pill">조직몰입</span>
+            <span class="stack-pill">이벤트 기획</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-title">SK mySUNI 학습 데이터 분석으로 고객사 추가 계약 성사</div>
+            <span class="proj-tag">고객 관리·데이터 분석</span>
+          </div>
+          <p class="proj-desc">
+            2020년 도입된 SK mySUNI를 운영하며 연차가 쌓일수록 사이트 유입률과 학습 시간이 하락하는 흐름을 포착했습니다. 2022년과 2023년 동기간의 유입률, 학습 시간, 관심 채널 등록 인원을 비교 분석해 고객사에 보고하고, 학습 독려를 위한 이벤트 기획을 제안했습니다. SK이노베이션과 경품 구성·선정 기준을 협의해 이벤트를 실행한 결과 유입률과 학습 시간이 유의미하게 증가했고, 이 성과를 인정한 고객사 실무자로부터 추가 인력 계약 제안을 받아 실제 계약 성사로 이어졌습니다.
+          </p>
+          <div class="proj-stats">
+            <div class="stat">
+              <span class="stat-num">동기간 비교</span>
+              <span class="stat-label">2022~2023 데이터 분석·보고</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">유의미 증가</span>
+              <span class="stat-label">유입률·학습 시간 개선</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">추가 계약</span>
+              <span class="stat-label">고객사 요청으로 성사</span>
+            </div>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-pill">고객사 커뮤니케이션</span>
+            <span class="stack-pill">LMS 데이터 분석</span>
+            <span class="stack-pill">이벤트 기획</span>
+            <span class="stack-pill">계약 협상 지원</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-header">
+            <div class="proj-title">SK그룹 신임 리더 대상 Strategic Decision Making 교육 설계</div>
+            <span class="proj-tag">리더십 교육</span>
+          </div>
+          <p class="proj-desc">
+            경영 환경이 불확실해질수록 리더 의사결정의 파급력이 커진다고 판단해, 신임 리더와 리더 후보자를 대상으로 실전형 교육을 기획·운영했습니다. 계열사 리더들이 장시간 대면 교육에 참여하기 어려운 조건을 고려해, 일방적 집합 교육 대신 비동기식 웹사이트 학습 환경을 직접 구축했습니다. 팀 간 소통을 돕는 인터페이스와 자율 학습을 유도하는 마이크로러닝 콘텐츠를 설계하고, 실시간 팀 토의 인프라도 함께 마련했습니다. 기획부터 시스템 구축, 콘텐츠 제작까지 전 과정을 주도한 결과, 17명 중 14명의 리더로부터 5점 만점의 최상위 만족도를 확보했습니다.
+          </p>
+          <div class="proj-stats">
+            <div class="stat">
+              <span class="stat-num">14/17명</span>
+              <span class="stat-label">5점 만점 최상위 만족도</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">비동기식</span>
+              <span class="stat-label">웹사이트 학습 환경 직접 구축</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">마이크로러닝</span>
+              <span class="stat-label">자율 학습형 콘텐츠 설계</span>
+            </div>
+          </div>
+          <div class="proj-stack">
+            <span class="stack-pill">디지털 러닝 설계</span>
+            <span class="stack-pill">마이크로러닝</span>
+            <span class="stack-pill">비동기 학습 플랫폼</span>
+            <span class="stack-pill">리더십 교육</span>
+          </div>
+        </div>
+
       </div>
     </section>
   </div>
 
   <hr class="divider">
 
-  <!-- CERTS -->
   <div class="container">
     <section class="section">
       <p class="sec-eyebrow">자격증</p>
@@ -1046,7 +1150,6 @@
 
   <hr class="divider">
 
-  <!-- DEMO VIDEOS -->
   <div class="container">
     <section class="section" id="works">
       <p class="sec-eyebrow">제작물 데모</p>
@@ -1099,7 +1202,6 @@
 
   <hr class="divider">
 
-  <!-- CONTACT -->
   <div class="container">
     <section class="section" id="contact">
       <p class="sec-eyebrow">연락처</p>
@@ -1141,9 +1243,6 @@
     © 2026 최은영 · HRD·교육기획 포트폴리오
   </footer>
 
-  <!-- ── CHATBOT ── -->
-
-  <!-- FAB 버튼 -->
   <div id="chat-tooltip">💬 궁금한 점을 물어보세요!</div>
   <button id="chat-fab" aria-label="AI 은영이에게 질문하기" onclick="toggleChat()">
     <span id="chat-badge">1</span>
@@ -1152,7 +1251,6 @@
     </svg>
   </button>
 
-  <!-- 채팅 창 -->
   <div id="chat-window" class="hidden" role="dialog" aria-label="AI 은영 챗봇">
     <div class="chat-header">
       <div class="chat-avatar">은</div>
@@ -1165,7 +1263,6 @@
       </button>
     </div>
 
-    <!-- 추천 질문 -->
     <div class="chat-suggested">
       <button onclick="sendSuggested('고용보험 환급 실무 경험이 있나요?')">💼 고용보험 환급 경험</button>
       <button onclick="sendSuggested('어떤 웹앱을 직접 만들었나요?')">💻 제작 웹앱</button>
@@ -1174,10 +1271,8 @@
       <button onclick="sendSuggested('강점이 무엇인가요?')">🎯 강점</button>
     </div>
 
-    <!-- 메시지 목록 -->
     <div class="chat-messages" id="chat-messages"></div>
 
-    <!-- 입력창 -->
     <div class="chat-input-row">
       <textarea id="chat-input" rows="1" placeholder="궁금한 점을 질문해보세요…" onkeydown="handleKey(event)"></textarea>
       <button id="chat-send" onclick="sendMessage()" aria-label="전송">
@@ -1187,10 +1282,7 @@
   </div>
 
   <script>
-    // ── API 키 설정 ──────────────────────────────────────────
-    // ✏️ 아래에 본인의 Anthropic API 키를 입력하세요
     const API_KEY = '';
-    // ────────────────────────────────────────────────────────
 
     const SYSTEM_PROMPT = `당신은 최은영 씨의 AI 분신입니다. 채용 포트폴리오를 보는 면접관이 질문하면, 최은영 씨 본인처럼 1인칭으로 자신감 있고 구체적으로 답변하세요.
 
@@ -1219,6 +1311,8 @@
 - CS마인드시프트 교육 기획·운영 → ITO사업부 CS마인드 개선 기여
 - 영업 및 제안/PT 역량 강화 교육 기획·운영 (만족도 4.3점/5점)
 - Best HRD 우수기관 인증 심사 대응 (현재 서류 평가 대기 중)
+- 사내 소통채널 '키오스크 레터' 기획·운영: 복도 키오스크·TV로 3분 내외 영상 콘텐츠 송출, 점심시간 플레이리스트와 함께 컴플라이언스·인재상 메시지 자연스럽게 전달, QR코드로 상세 채널 연결, 매월 600명 이상 순수 조회수 기록
+- 신입사원 성장 발표 'Level Up 프로젝트' 운영: 입사 1년 차 업무 개선 과제 발표, 경직된 분위기를 '타임캡슐 세션'(입문교육 편지 재확인)과 커스텀 컵케이크로 전환, 신입사원 SNS 자발적 공유로 채용 브랜딩 효과까지 확산
 
 [경력 2]
 회사: (주)현대경제연구원
@@ -1239,7 +1333,8 @@
 주요 업무 및 성과:
 - SK하이닉스 전사 임직원 3만 명 대상 법정의무교육 5개 과정 이수율 100% 달성
 - SK이노베이션 Management College PM: 고객사와 커뮤니케이션, mySUNI Card/Cube 개설, 학습 이력 관리, 결과보고
-- Strategic Decision Making 프로젝트 기획·운영 (하이플렉스 방식): 과반수 이상 5점 달성
+- mySUNI 학습 데이터 분석 및 이벤트 기획으로 고객사 추가 계약 성사: 2022~2023년 동기간 유입률·학습 시간 하락을 데이터로 파악해 고객사에 보고, 이벤트 기획을 제안해 SK이노베이션과 협의 후 실행 → 유입률·학습 시간 유의미하게 증가, 고객사 실무자로부터 추가 인력 계약 제안을 받아 실제 계약 성사
+- Strategic Decision Making 프로젝트 기획·운영: SK그룹 신임 리더·리더 후보자 대상, 대면 집합 교육 대신 비동기식 웹사이트 학습 환경 직접 구축(팀 소통 인터페이스, 마이크로러닝 콘텐츠, 실시간 팀 토의 인프라), 17명 중 14명의 리더로부터 5점 만점 최상위 만족도 확보
 - 비동기식 웹사이트 구축 기획 참여 (항목 구성, 웹디자인, 파일럿, 매뉴얼)
 - mySUNI 헬프데스크 운영: 수강·접속 관련 학습자 문의 대응
 - LMS 관리: 학습자 수·교육 시간 증감 보고서 작성, 과제·TEST 검수·이수 처리
@@ -1276,15 +1371,19 @@
 [주요 성과 요약]
 1. 고용보험 환급액 전년 대비 약 1,357% 성장 (1,900만 → 1억 9,000만 원)
 2. 2026년 5개월 만에 2억 7,800만 원 환급 추가 확보
-3. Strategic Decision Making 교육 과반수 이상 5점 달성
+3. Strategic Decision Making 교육에서 신임 리더 17명 중 14명 5점 만점 최상위 만족도 달성
 4. SK하이닉스 3만 명 법정의무교육 이수율 100% 달성
 5. 한-뉴 FTA 농수산 협력사업 교육 만족도 4.65점 달성
+6. 사내 소통채널 '키오스크 레터' 매월 600명 이상 순수 조회수 기록
+7. 'Level Up 프로젝트' 타임캡슐 세션으로 신입사원 자발적 SNS 확산 및 채용 브랜딩 효과 창출
+8. mySUNI 학습 데이터 분석·이벤트 기획으로 고객사 성과 개선 및 추가 인력 계약 성사
 
 [강점]
 - 숫자로 증명하는 실행력: 제도 개선 → 환급 1,357% 성장
 - AI 도구 실무 내재화: 이론이 아닌 실제 웹앱 개발로 업무 자동화
 - 반복 업무를 보면 도구로 만드는 습관
 - 꼼꼼한 문서화와 데이터 기반 의사결정
+- 조직 몰입과 정서적 공감을 이끌어내는 커뮤니케이션 기획력
 
 [자주 묻는 질문 — 예상 Q&A]
 이 항목들은 면접관이 비슷한 질문을 할 때 답변의 뼈대로 활용하세요. 그대로 읊지 말고 자연스럽게 1인칭으로 재구성하세요.
@@ -1312,6 +1411,15 @@ A. 교육기획부터 운영까지 다양한 HRD 업무 경험에 더해, 실제
 
 Q. 앞으로 어떤 HRD 전문가로 성장하고 싶으신가요?
 A. 단순히 교육을 운영하는 운영자를 넘어, 구성원들이 일하는 방식을 혁신할 수 있도록 돕는 'AX(AI 전환) 시대의 HR 파트너'가 되고 싶습니다. 기술을 통해 HR 스스로의 생산성을 높이고, 조직 전체의 디지털 역량도 끌어올리는 역할을 하고 싶습니다.
+
+Q. 정규 교육과정 운영 외에 조직문화 측면에서는 어떤 경험이 있으신가요?
+A. 사내 소통 방식을 다변화하고 구성원 관점의 온보딩 프로그램을 기획·운영한 경험이 있습니다. 근태·컴플라이언스처럼 딱딱하게 느껴지는 주제는 복도 키오스크와 TV를 활용한 3분 내외 영상 콘텐츠 '키오스크 레터'로 만들어 점심시간 플레이리스트와 함께 자연스럽게 전달했고, 매월 600명 이상의 순수 조회수를 꾸준히 기록했습니다. 또한 신입사원 1년 차 성장 발표인 'Level Up 프로젝트'에서는 경직되기 쉬운 임원 평가 분위기를, 입문교육 편지를 다시 읽는 '타임캡슐 세션'과 커스텀 컵케이크로 동기 간 공감의 자리로 바꿔낸 경험이 있습니다.
+
+Q. 고객사와의 관계에서 성과를 인정받아 계약으로 이어진 경험이 있나요?
+A. SK엠앤서비스 재직 시절 SK mySUNI를 운영하며 연차가 쌓일수록 유입률과 학습 시간이 하락하는 흐름을 포착한 적이 있습니다. 2022년과 2023년 동기간 데이터를 비교 분석해 고객사에 보고하고, 학습 독려를 위한 이벤트 기획을 제안했습니다. SK이노베이션과 경품 구성을 협의해 실행한 결과 유입률과 학습 시간이 유의미하게 증가했고, 이 성과를 인정한 고객사 담당자로부터 추가 인력 계약 제안을 받아 실제 계약 성사로 이어갔습니다.
+
+Q. 지금까지 HRD 업무 중 가장 큰 성취감을 느낀 순간은 언제인가요?
+A. SK그룹 신임 리더 대상 Strategic Decision Making 교육을 마쳤을 때입니다. 계열사 리더들이 대면 집합 교육에 장시간 참여하기 어려운 조건을 고려해, 공급자 중심의 일방적 교육 대신 비동기식 웹사이트 환경을 직접 구축했습니다. 팀 간 소통을 돕는 인터페이스, 자율 학습을 유도하는 마이크로러닝 콘텐츠, 실시간 팀 토의 인프라까지 기획부터 구축, 콘텐츠 제작까지 전 과정을 주도했고, 교육 종료 후 17명 중 14명의 리더로부터 5점 만점의 최상위 만족도를 받으며 학습자 중심의 디지털 환경 설계가 실제 성과로 이어진다는 것을 확인했습니다.
 
 [답변 스타일 지침]
 - 항상 1인칭("저는", "제가")으로 답변
@@ -1410,12 +1518,10 @@ A. 단순히 교육을 운영하는 운영자를 넘어, 구성원들이 일하�
       if (!text) return;
       input.value = '';
 
-      // 사용자 메시지 표시
       document.getElementById('chat-messages').appendChild(createMsg('user', text));
       scrollToBottom();
       messages.push({ role: 'user', content: text });
 
-      // 로딩
       isLoading = true;
       document.getElementById('chat-send').disabled = true;
       addTyping();
