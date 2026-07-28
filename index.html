@@ -274,54 +274,139 @@
       content: none;
     }
 
-    .proj-grid { display: grid; gap: 18px; }
-    .proj-card {
+    /* Tabbed project explorer: left = list of cases, right = active case detail.
+       Replaces the old stacked-card grid so only one case is visible at a time.
+       Each case carries a category color (--accent/--accent-bg) so the eight
+       domains read as distinct at a glance instead of one flat blue list. */
+    .cat-1 { --accent: #2563EB; --accent-bg: #EFF6FF; }
+    .cat-2 { --accent: #7C3AED; --accent-bg: #F5F3FF; }
+    .cat-3 { --accent: #0D9488; --accent-bg: #F0FDFA; }
+    .cat-4 { --accent: #D97706; --accent-bg: #FFFBEB; }
+    .cat-5 { --accent: #DB2777; --accent-bg: #FDF2F8; }
+    .cat-6 { --accent: #059669; --accent-bg: #ECFDF5; }
+    .cat-7 { --accent: #4F46E5; --accent-bg: #EEF2FF; }
+    .cat-8 { --accent: #DC2626; --accent-bg: #FEF2F2; }
+
+    .proj-explorer {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      border-left: 3px solid var(--blue);
-      transition: box-shadow 0.15s;
+      overflow: hidden;
+      min-height: 480px;
     }
-    .proj-card:hover { box-shadow: 0 4px 20px rgba(15,33,55,0.08); }
+    .proj-tablist {
+      list-style: none;
+      border-right: 1px solid var(--border);
+      background: var(--border-light);
+      padding: 8px;
+    }
+    .proj-tab {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 10px 12px 10px 9px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-bottom: 2px;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .proj-tab:hover { background: rgba(15,23,42,0.04); }
+    .proj-tab-cat {
+      display: flex;
+      align-items: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .proj-tab-cat::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+    .proj-tab-name {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .proj-tab.active { background: var(--surface); border-left-color: var(--accent); box-shadow: 0 1px 4px rgba(15,33,55,0.08); }
+    .proj-tab.active .proj-tab-cat { color: var(--accent); }
+    .proj-tab.active .proj-tab-name { color: var(--text-primary); font-weight: 700; }
+
+    .proj-panel { padding: 1.9rem 2rem; }
+    .proj-case { display: none; }
+    .proj-case.active { display: block; animation: fadeIn 0.18s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
     .proj-header {
       display: flex;
-      justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 14px;
+      margin-bottom: 14px;
     }
-    .proj-title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+    .proj-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border-radius: var(--radius-md);
+      background: var(--accent-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .proj-icon svg { width: 21px; height: 21px; stroke: var(--accent); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .proj-header-text { flex: 1; padding-top: 2px; }
+    .proj-title { font-size: 16px; font-weight: 700; color: var(--text-primary); line-height: 1.4; margin-bottom: 6px; }
     .proj-tag {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
-      padding: 4px 10px;
-      background: var(--blue-light);
-      color: var(--blue);
+      padding: 3px 10px;
+      background: var(--accent-bg);
+      color: var(--accent);
       border-radius: 999px;
       white-space: nowrap;
-      flex-shrink: 0;
+      display: inline-block;
     }
-    .proj-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.1rem; }
+    .proj-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.3rem; }
     .proj-stats {
-      display: flex;
-      gap: 2rem;
-      padding: 0.9rem 0;
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
-      margin-bottom: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
     }
-    .stat { }
+    .stat {
+      background: var(--accent-bg);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
     .stat-num {
       font-family: 'Inter', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      color: var(--blue);
+      color: var(--accent);
       display: block;
       line-height: 1.2;
+      margin-bottom: 2px;
+      word-break: keep-all;
     }
-    .stat-label { font-size: 11px; color: var(--text-muted); }
+    .stat-label { font-size: 11px; color: var(--text-secondary); word-break: keep-all; }
     .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
     .stack-pill {
       font-size: 11px;
@@ -331,6 +416,20 @@
       color: var(--text-secondary);
       border-radius: 4px;
       border: 1px solid var(--border);
+    }
+
+    @media (max-width: 700px) {
+      .proj-explorer { grid-template-columns: 1fr; min-height: 0; }
+      .proj-tablist {
+        display: flex;
+        overflow-x: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        gap: 4px;
+      }
+      .proj-tab { width: auto; white-space: nowrap; flex-shrink: 0; border-left: none; border-bottom: 3px solid transparent; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+      .proj-tab.active { border-bottom-color: var(--accent); }
+      .proj-panel { padding: 1.5rem 1.25rem; }
     }
 
     .demo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
@@ -858,13 +957,51 @@
   <div class="container">
     <section class="section" id="projects">
       <p class="sec-eyebrow">프로젝트 사례</p>
-      <h2 class="sec-title">자동화 웹앱</h2>
-      <div class="proj-grid">
+      <h2 class="sec-title">주요 프로젝트</h2>
+      <div class="proj-explorer">
+        <ul class="proj-tablist" role="tablist">
+          <li><button class="proj-tab cat-1 active" data-case="case-1" onclick="showCase('case-1', this)">
+            <span class="proj-tab-cat">환급·제도 개선</span>
+            <span class="proj-tab-name">HRD-Net 환급 2.7억 확보</span>
+          </button></li>
+          <li><button class="proj-tab cat-2" data-case="case-2" onclick="showCase('case-2', this)">
+            <span class="proj-tab-cat">교육기획</span>
+            <span class="proj-tab-name">전사 AI/AX 교육 체계 구축</span>
+          </button></li>
+          <li><button class="proj-tab cat-3" data-case="case-3" onclick="showCase('case-3', this)">
+            <span class="proj-tab-cat">웹앱 개발</span>
+            <span class="proj-tab-name">직무교육 행정 자동화</span>
+          </button></li>
+          <li><button class="proj-tab cat-4" data-case="case-4" onclick="showCase('case-4', this)">
+            <span class="proj-tab-cat">조직문화</span>
+            <span class="proj-tab-name">학습조직 활성화</span>
+          </button></li>
+          <li><button class="proj-tab cat-5" data-case="case-5" onclick="showCase('case-5', this)">
+            <span class="proj-tab-cat">조직문화·커뮤니케이션</span>
+            <span class="proj-tab-name">키오스크 레터 운영</span>
+          </button></li>
+          <li><button class="proj-tab cat-6" data-case="case-6" onclick="showCase('case-6', this)">
+            <span class="proj-tab-cat">온보딩·신입사원</span>
+            <span class="proj-tab-name">Level Up 프로젝트</span>
+          </button></li>
+          <li><button class="proj-tab cat-7" data-case="case-7" onclick="showCase('case-7', this)">
+            <span class="proj-tab-cat">고객 관리·데이터 분석</span>
+            <span class="proj-tab-name">mySUNI 데이터 분석</span>
+          </button></li>
+          <li><button class="proj-tab cat-8" data-case="case-8" onclick="showCase('case-8', this)">
+            <span class="proj-tab-cat">리더십 교육</span>
+            <span class="proj-tab-name">Decision Making 리더십 교육</span>
+          </button></li>
+        </ul>
+        <div class="proj-panel">
 
-        <div class="proj-card">
+        <div class="proj-case cat-1 active" id="case-1">
           <div class="proj-header">
-            <div class="proj-title">HRD-Net 환급액 2.7억 확보 및 Best HRD 우수기관 인증 심사 프로젝트 주도</div>
-            <span class="proj-tag">환급·제도 개선</span>
+            <div class="proj-icon"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></div>
+            <div class="proj-header-text">
+              <div class="proj-title">HRD-Net 환급액 2.7억 확보 및 Best HRD 우수기관 인증 심사 프로젝트 주도</div>
+              <span class="proj-tag">환급·제도 개선</span>
+            </div>
           </div>
           <p class="proj-desc">
             환급 체계를 원점에서 재점검하여 NCS 과정 다양화, 숙식비 제도 도입, 신기술 훈련 심사 도전을 이끌었습니다. 이를 통해 2024년 1,900만 원이었던 환급액을 2025년 1억 9,000만 원으로 성장시켰으며, 2026년은 5개월 만에 2억 7,800만 원을 추가 확보했습니다. 나아가 고도화된 제도 운영 성과를 바탕으로 올해 Best HRD 우수기관 인증 심사 신청 및 전 과정 심사 대응을 주도했습니다.
@@ -891,10 +1028,13 @@
           </div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-case cat-2" id="case-2">
           <div class="proj-header">
-            <div class="proj-title">전사 AI/AX 교육 체계 구축</div>
-            <span class="proj-tag">교육기획</span>
+            <div class="proj-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <div class="proj-header-text">
+              <div class="proj-title">전사 AI/AX 교육 체계 구축</div>
+              <span class="proj-tag">교육기획</span>
+            </div>
           </div>
           <p class="proj-desc">
             전사 설문·노사협의회를 통해 니즈를 도출하고, 실무자가 즉시 생산성을 개선할 수 있는 실습 중심 커리큘럼을 설계·운영, 상반기 40~50개 차수를 운영했습니다. 이후 Claude·Google AI Studio로 설문 분석 자동화 웹앱을 직접 개발, 분석 시간을 단축하고 데이터 기반의 즉각적인 교육 개선으로 만족도 상승을 견인했습니다.
@@ -921,10 +1061,13 @@
           </div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-case cat-3" id="case-3">
           <div class="proj-header">
-            <div class="proj-title">HR Tech를 활용한 직무교육 행정 웹 기반 자동화</div>
-            <span class="proj-tag">웹앱 개발</span>
+            <div class="proj-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div class="proj-header-text">
+              <div class="proj-title">HR Tech를 활용한 직무교육 행정 웹 기반 자동화</div>
+              <span class="proj-tag">웹앱 개발</span>
+            </div>
           </div>
           <p class="proj-desc">
             사내 직무교육 운영의 DX를 위해 행정 전반을 스마트 워크 체제로 재편했습니다. 수기 작성이 필요했던 [HRD-Net 통합 생성기], [공문 자동 작성기], [교육비 원장 자동 작성기], [출석체크 웹앱], [설문 분석 자동화 웹앱]을 구축했습니다. 이를 통해 복잡한 계산과 서식 작성을 자동화하여 휴먼 에러를 원천 차단하고, 기존 행정 소요시간 대비 80% 이상 단축했습니다. 이렇게 확보한 리소스를 토대로 임직원 역량 강화라는 교육 본연의 가치 창출에 집중하고 있습니다.
@@ -954,10 +1097,13 @@
           </div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-case cat-4" id="case-4">
           <div class="proj-header">
-            <div class="proj-title">학습조직 활성화 및 제도 혁신</div>
-            <span class="proj-tag">조직문화</span>
+            <div class="proj-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="proj-header-text">
+              <div class="proj-title">학습조직 활성화 및 제도 혁신</div>
+              <span class="proj-tag">조직문화</span>
+            </div>
           </div>
           <p class="proj-desc">
             현업의 업무 부담과 제도적 한계를 분석하여 사내 학습조직 지원 제도를 전면 개편했습니다. 1회 4시간의 학습 근태 기준을 현업 결손을 최소화하는 2시간 단위 분할 사용 방식으로 유연화하여 참여 장벽을 낮췄습니다. 또한, 공모 키워드 기반의 전년도 우승자 매칭 및 희망 멘토 지정제, 멘토링비 지급 등 보상 체계를 강화했습니다. 이를 통해 참여 신청 건수를 전년 대비 84% 성장(25개 → 46개)시켰으며, 학습 결과물 제출 의무화를 적용해 교육의 질적 상향 평준화를 달성하고 Best HRD 인증 우수 사례로 자산화했습니다.
@@ -985,13 +1131,16 @@
           </div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-case cat-5" id="case-5">
           <div class="proj-header">
-            <div class="proj-title">사내 소통채널 '키오스크 레터' 기획·운영</div>
-            <span class="proj-tag">조직문화·커뮤니케이션</span>
+            <div class="proj-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div class="proj-header-text">
+              <div class="proj-title">사내 소통채널 '키오스크 레터' 기획·운영</div>
+              <span class="proj-tag">조직문화·커뮤니케이션</span>
+            </div>
           </div>
           <p class="proj-desc">
-            근태 규정 준수나 컴플라이언스처럼 텍스트 공지로는 외면받기 쉬운 주제를, 복도 키오스크와 TV로 송출하는 3분 내외의 영상 콘텐츠로 기획했습니다. 점심시간 음악 플레이리스트와 함께 자연스럽게 노출시키고, 부문장 간담회나 사내 이슈 속 메시지를 영상 안에 녹여 전달했습니다. 상세 내용을 원하는 구성원을 위해 QR코드로 사내 게시판과 연결되는 채널도 함께 구축한 결과, 매월 600명 이상의 순수 조회수를 꾸준히 기록하며 인재상과 비즈니스 매너를 일상 속에 자연스럽게 정착시켰습니다.
+            근태 규정 준수나 컴플라이언스처럼 텍스트 공지로는 외면받기 쉬운 주제를, 복도 키오스크와 TV로 송출하는 3분 내외의 영상 콘텐츠로 기획했습니다. 점심시간 음악 플레이리스트와 함께 자연스럽게 노출시키고, 부문장 간담회나 사내 이슈 속 메시지를 영상 안에 녹여 전달한 결과, 매월 600명 이상의 순수 조회수를 꾸준히 기록하며 인재상과 비즈니스 매너를 일상 속에 자연스럽게 정착시켰습니다.
           </p>
           <div class="proj-stats">
             <div class="stat">
@@ -1003,8 +1152,8 @@
               <span class="stat-label">내외 콘텐츠 러닝타임</span>
             </div>
             <div class="stat">
-              <span class="stat-num">QR 연동</span>
-              <span class="stat-label">상세 정보 채널 구축</span>
+              <span class="stat-num">자연스러운 정착</span>
+              <span class="stat-label">인재상·비즈니스 매너 전달</span>
             </div>
           </div>
           <div class="proj-stack">
@@ -1015,29 +1164,29 @@
           </div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-case cat-6" id="case-6">
           <div class="proj-header">
-            <div class="proj-title">신입사원 성장 발표 'Level Up 프로젝트' 운영</div>
-            <span class="proj-tag">온보딩·신입사원</span>
+            <div class="proj-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.6-6.3 4.6 2.3-7.2-6-4.6h7.6z"/></svg></div>
+            <div class="proj-header-text">
+              <div class="proj-title">신입사원 성장 발표 'Level Up 프로젝트' 운영</div>
+              <span class="proj-tag">온보딩·신입사원</span>
+            </div>
           </div>
           <p class="proj-desc">
             입사 1년 차 신입사원이 업무 개선 과제를 임원진 앞에서 발표하며 성장을 격려하고 소속감을 높이는 프로그램을 운영했습니다. 임원 평가 방식으로 흘러가며 분위기가 경직되는 한계가 나타나자, 입문교육 당시 작성한 편지를 발표 직전 다시 읽는 '타임캡슐 세션'을 도입해 1년 전 다짐과 현재의 성장을 마주하게 했습니다. 이름을 새긴 커스텀 컵케이크를 함께 전달하자 발표 현장은 동기 간 격려와 공감의 자리로 바뀌었고, 신입사원들이 이를 개인 SNS에 자발적으로 공유하며 채용 브랜딩 효과로도 이어졌습니다.
           </p>
           <div class="proj-stats">
             <div class="stat">
-              <span class="stat-num">타임캡슐</span>
-              <span class="stat-label">입문교육 편지 재확인 세션 도입</span>
+              <span class="stat-num">공감의 발표로 전환</span>
+              <span class="stat-label">경직된 임원 평가 방식 개선</span>
             </div>
             <div class="stat">
-              <span class="stat-num">경직→공감</span>
-              <span class="stat-label">발표 분위기 전환</span>
-            </div>
-            <div class="stat">
-              <span class="stat-num">채용 브랜딩</span>
-              <span class="stat-label">SNS 자발적 확산 효과</span>
+              <span class="stat-num">채용 브랜딩 효과</span>
+              <span class="stat-label">신입사원 자발적 SNS 확산</span>
             </div>
           </div>
           <div class="proj-stack">
+            <span class="stack-pill">타임캡슐 세션</span>
             <span class="stack-pill">온보딩 설계</span>
             <span class="stack-pill">신입사원 프로그램</span>
             <span class="stack-pill">조직몰입</span>
@@ -1045,26 +1194,29 @@
           </div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-case cat-7" id="case-7">
           <div class="proj-header">
-            <div class="proj-title">SK mySUNI 학습 데이터 분석으로 고객사 추가 계약 성사</div>
-            <span class="proj-tag">고객 관리·데이터 분석</span>
+            <div class="proj-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+            <div class="proj-header-text">
+              <div class="proj-title">SK mySUNI 학습 데이터 분석으로 고객사 추가 계약 성사</div>
+              <span class="proj-tag">고객 관리·데이터 분석</span>
+            </div>
           </div>
           <p class="proj-desc">
             2020년 도입된 SK mySUNI를 운영하며 연차가 쌓일수록 사이트 유입률과 학습 시간이 하락하는 흐름을 포착했습니다. 2022년과 2023년 동기간의 유입률, 학습 시간, 관심 채널 등록 인원을 비교 분석해 고객사에 보고하고, 학습 독려를 위한 이벤트 기획을 제안했습니다. SK이노베이션과 경품 구성·선정 기준을 협의해 이벤트를 실행한 결과 유입률과 학습 시간이 유의미하게 증가했고, 이 성과를 인정한 고객사 실무자로부터 추가 인력 계약 제안을 받아 실제 계약 성사로 이어졌습니다.
           </p>
           <div class="proj-stats">
             <div class="stat">
-              <span class="stat-num">동기간 비교</span>
-              <span class="stat-label">2022~2023 데이터 분석·보고</span>
+              <span class="stat-num">추가 인력 계약</span>
+              <span class="stat-label">고객사 요청으로 계약 성사</span>
             </div>
             <div class="stat">
-              <span class="stat-num">유의미 증가</span>
-              <span class="stat-label">유입률·학습 시간 개선</span>
+              <span class="stat-num">유입률·학습시간 개선</span>
+              <span class="stat-label">이벤트 기획·실행 후 성과 향상</span>
             </div>
             <div class="stat">
-              <span class="stat-num">추가 계약</span>
-              <span class="stat-label">고객사 요청으로 성사</span>
+              <span class="stat-num">데이터 기반 제안</span>
+              <span class="stat-label">2022~2023 동기간 비교 분석</span>
             </div>
           </div>
           <div class="proj-stack">
@@ -1075,22 +1227,25 @@
           </div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-case cat-8" id="case-8">
           <div class="proj-header">
-            <div class="proj-title">SK그룹 신임 리더 대상 Strategic Decision Making 교육 설계</div>
-            <span class="proj-tag">리더십 교육</span>
+            <div class="proj-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+            <div class="proj-header-text">
+              <div class="proj-title">SK그룹 신임 리더 대상 Strategic Decision Making 교육 설계</div>
+              <span class="proj-tag">리더십 교육</span>
+            </div>
           </div>
           <p class="proj-desc">
             경영 환경이 불확실해질수록 리더 의사결정의 파급력이 커진다고 판단해, 신임 리더와 리더 후보자를 대상으로 실전형 교육을 기획·운영했습니다. 계열사 리더들이 장시간 대면 교육에 참여하기 어려운 조건을 고려해, 일방적 집합 교육 대신 비동기식 웹사이트 학습 환경을 직접 구축했습니다. 팀 간 소통을 돕는 인터페이스와 자율 학습을 유도하는 마이크로러닝 콘텐츠를 설계하고, 실시간 팀 토의 인프라도 함께 마련했습니다. 기획부터 시스템 구축, 콘텐츠 제작까지 전 과정을 주도한 결과, 17명 중 14명의 리더로부터 5점 만점의 최상위 만족도를 확보했습니다.
           </p>
           <div class="proj-stats">
             <div class="stat">
-              <span class="stat-num">14/17명</span>
-              <span class="stat-label">5점 만점 최상위 만족도</span>
+              <span class="stat-num">82%</span>
+              <span class="stat-label">5점 만점 최상위 만족도 (14명/17명)</span>
             </div>
             <div class="stat">
-              <span class="stat-num">비동기식</span>
-              <span class="stat-label">웹사이트 학습 환경 직접 구축</span>
+              <span class="stat-num">비동기식 학습 환경 구축</span>
+              <span class="stat-label">대면 집합 교육 대신 직접 개발</span>
             </div>
             <div class="stat">
               <span class="stat-num">마이크로러닝</span>
@@ -1105,6 +1260,7 @@
           </div>
         </div>
 
+        </div>
       </div>
     </section>
   </div>
@@ -1282,6 +1438,14 @@
   </div>
 
   <script>
+    function showCase(caseId, btn) {
+      document.querySelectorAll('.proj-case').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.proj-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(caseId).classList.add('active');
+      btn.classList.add('active');
+      btn.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    }
+
     const API_KEY = '';
 
     const SYSTEM_PROMPT = `당신은 최은영 씨의 AI 분신입니다. 채용 포트폴리오를 보는 면접관이 질문하면, 최은영 씨 본인처럼 1인칭으로 자신감 있고 구체적으로 답변하세요.
@@ -1311,7 +1475,7 @@
 - CS마인드시프트 교육 기획·운영 → ITO사업부 CS마인드 개선 기여
 - 영업 및 제안/PT 역량 강화 교육 기획·운영 (만족도 4.3점/5점)
 - Best HRD 우수기관 인증 심사 대응 (현재 서류 평가 대기 중)
-- 사내 소통채널 '키오스크 레터' 기획·운영: 복도 키오스크·TV로 3분 내외 영상 콘텐츠 송출, 점심시간 플레이리스트와 함께 컴플라이언스·인재상 메시지 자연스럽게 전달, QR코드로 상세 채널 연결, 매월 600명 이상 순수 조회수 기록
+- 사내 소통채널 '키오스크 레터' 기획·운영: 복도 키오스크·TV로 3분 내외 영상 콘텐츠 송출, 점심시간 플레이리스트와 함께 컴플라이언스·인재상 메시지 자연스럽게 전달, 매월 600명 이상 순수 조회수 기록
 - 신입사원 성장 발표 'Level Up 프로젝트' 운영: 입사 1년 차 업무 개선 과제 발표, 경직된 분위기를 '타임캡슐 세션'(입문교육 편지 재확인)과 커스텀 컵케이크로 전환, 신입사원 SNS 자발적 공유로 채용 브랜딩 효과까지 확산
 
 [경력 2]
